@@ -4,7 +4,6 @@
 #include <fstream>
 #include <conio.h>
 #include <windows.h>
-#include <cmath>
 
 #define RANDOM 1 + rand() % 6 // Генерация случайного числа от 1 до 6
 
