@@ -251,7 +251,7 @@ bool inputcheck(string retake) // ‘ункци€ проверки ввода
 
 void turn(string player, int dice[5])
 {
-	bool used[5] = { false,false,false,false,false }; // ћассив, который будет содержать данные перекинутых костей, чтобы во второй раз перекидывались именно их
+	bool used[5] = { false,false,false,false,false }; // ћассив, который будет содержать данные перекинутых костей, чтобы во второй раз перекидывались только они
 	int sortdice[5] = { 0,0,0,0,0 }; // ћассив дл€ проверки на комбинацию
 	srand((unsigned)time(NULL)); // »нициализаци€ генератора случайных чисел с помощью функции time
 	system("cls");
@@ -260,7 +260,7 @@ void turn(string player, int dice[5])
 	system("cls");
 	for (int i = 0; i < 5; i++)
 		dice[i] = RANDOM;
-	for (int i = 0; i < 5; i++) //  опируем массив дл€ сортировки, если будет сортировать начальный - будет выводитс€ отсортированный
+	for (int i = 0; i < 5; i++) //  опируем массив дл€ сортировки(нужно дл€ определени€ комбинации), если будем сортировать начальный - будет выводитс€ отсортированный
 		sortdice[i] = dice[i];
 	qsort(sortdice, 5, sizeof(int), compare);
 	int points = countcomb(sortdice);
@@ -286,7 +286,7 @@ void turn(string player, int dice[5])
 			used[change] = true; // ѕомечаем эту кость как переброшенную
 			dice[change] = RANDOM; // ѕеребрасываем
 		}
-		for (int i = 0; i < 5; i++)	//  опируем массив дл€ сортировки, если будет сортировать начальный - будет выводитс€ отсортированный
+		for (int i = 0; i < 5; i++)	//  опируем массив дл€ сортировки(нужно дл€ определени€ комбинации), если будем сортировать начальный - будет выводитс€ отсортированный
 			sortdice[i] = dice[i];
 		qsort(sortdice, 5, sizeof(int), compare);
 		points = countcomb(sortdice);
@@ -362,7 +362,7 @@ int pointscount(string player1, string player2)
 			break;
 		}
 	}
-	int sortdice1[5] = { 0,0,0,0,0 }, sortdice2[5] = { 0,0,0,0,0 }; // —оздаем массивы дл€ проверки комбинации у игроков
+	int sortdice1[5] = { 0,0,0,0,0 }, sortdice2[5] = { 0,0,0,0,0 }; // —оздаем массивы дл€ проверки комбинации у игроков(dice1 и dice2 нам нужны неотсортированные дл€ вывода)
 	for (int i = 0; i < 5; i++)
 	{
 		sortdice1[i] = dice1[i];
